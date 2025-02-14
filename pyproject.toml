@@ -1,0 +1,14 @@
+[project]
+name = "quiz-master-22f1001082"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bcrypt>=4.2.1",
+    "flask>=3.1.0",
+    "flask-restful>=0.3.10",
+    "flask-security-too>=5.5.2",
+    "flask-sqlalchemy>=3.1.1",
+    "setuptools>=75.6.0",
+]

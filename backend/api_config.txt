@@ -1,0 +1,5 @@
+subjects -> Get all subjects, get subject by id, create subject, update subject, delete subject
+chapters -> Get all chapters for a subject, get chapter for subject by id, create update and delete chapter for a subject
+quizzes -> Get all quizzes for a chapter, get quiz for chapter by id, create update and delete quiz for a chapter
+questions -> Get all questions for a quiz, get question for quiz by id, create update and delete question for a quiz
+

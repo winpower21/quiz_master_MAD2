@@ -1,0 +1,34 @@
+SubjectAPI
+	- GET (all subject list)
+	- POST (create new subject)
+
+SubjectIdAPI
+	- GET (get subject by id)
+	- DELETE (delete subject by id)
+
+ChapterAPI
+	- GET (all chapter list)
+	- POST (create new chapter)
+
+ChapterIdAPI
+	- GET (get chapter by id)
+	- DELETE (delete a chapter)
+
+SubjectChaptersAPI
+	- GET (chapters for a subject id)
+
+QuizAPI
+	- GET (quiz for a chapter id)
+	- POST (create new quiz)
+
+QuizIdAPI
+	- GET (get quiz by id)
+	- DELETE (delete a quiz)
+
+QuestionsAPI
+	- GET (get all questions for a quiz)
+	- POST (create a question for a quiz)
+
+QuestionsIdAPI
+	- GET (get question by id)
+	- DELETE (delete question by id)
