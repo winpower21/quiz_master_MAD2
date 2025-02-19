@@ -46,7 +46,7 @@ class Chapter(db.Model):
 
 class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    subject_id = db.Column(db.Integer, db.ForeighKey('subject.id'))
+    subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'))
     chapter_id = db.Column(db.Integer, db.ForeignKey('chapter.id'))
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
