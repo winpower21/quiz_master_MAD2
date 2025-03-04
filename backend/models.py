@@ -41,7 +41,7 @@ class Chapter(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
     subjects = db.relationship("Subject", secondary=subject_chapter_association, back_populates="chapters")
-    quizzes = db.relationship("Quiz", cascade = "all, delete-orpahn", backref="chapter")
+    quizzes = db.relationship("Quiz", cascade = "all, delete-orphan", backref="chapter")
 
 class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -50,8 +50,8 @@ class Quiz(db.Model):
     description = db.Column(db.Text)
     total_marks = db.Column(db.Integer, nullable=False)
     time_limit = db.Column(db.Integer, nullable=True)
-    questions = db.relationship("Question", cascade = "all, delete-orpahn", backref="quiz")
-    attempt = db.relationship("Attempt", cascade = "all, delete-orpahn", backref="quiz")
+    questions = db.relationship("Question", cascade = "all, delete-orphan", backref="quiz")
+    attempt = db.relationship("Attempt", cascade = "all, delete-orphan", backref="quiz")
     
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -62,7 +62,7 @@ class Question(db.Model):
     correct_range = db.Column(JSON)    
     correct_options = db.Column(JSON)
     marks = db.Column(db.Integer, nullable=False)
-    responses = db.relationship("Response", cascade = "all,delete-orpahn", backref = "question")
+    responses = db.relationship("Response", cascade = "all,delete-orphan", backref = "question")
     
 class Attempt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -71,7 +71,7 @@ class Attempt(db.Model):
     attempt_number = db.Column(db.Integer, nullable=False)
     attempt_date = db.Column(db.DateTime, default=datetime.now())
     score = db.Column(db.Integer, nullable=False)
-    responses = db.relationship("Response", cascade="all,delete-orpahn", backref="attempt")
+    responses = db.relationship("Response", cascade="all,delete-orphan", backref="attempt")
 
 class Response(db.Model):
     id = db.Column(db.Integer, primary_key=True)
