@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     fs_uniquifier= db.Column(db.String, unique = True, nullable=False)
     active = db.Column(db.Boolean, default=True)
     roles = db.relationship("Role", backref="bearers", secondary="user_roles") # type: ignore
-    attempts = db.relationship("Attempt", cascade="all,delete", backref="user")
+    attempts = db.relationship("Attempt", cascade="all, delete-orphan", backref="user")
     
 class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,35 +35,34 @@ class Subject(db.Model):
     description = db.Column(db.Text)
     image_url = db.Column(db.String, nullable=False)
     chapters = db.relationship("Chapter", secondary=subject_chapter_association, back_populates="subjects")
-    quizzes = db.relationship("Quiz", cascade = "all, delete", backref="subject")
 
 class Chapter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
     subjects = db.relationship("Subject", secondary=subject_chapter_association, back_populates="chapters")
-    quizzes = db.relationship("Quiz", cascade = "all, delete", backref="chapter")
+    quizzes = db.relationship("Quiz", cascade = "all, delete-orpahn", backref="chapter")
 
 class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'))
     chapter_id = db.Column(db.Integer, db.ForeignKey('chapter.id'))
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
     total_marks = db.Column(db.Integer, nullable=False)
     time_limit = db.Column(db.Integer, nullable=True)
-    questions = db.relationship("Question", cascade = "all, delete", backref="quiz")
-    attempt = db.relationship("Attempt", cascade = "all, delete", backref="quiz")
+    questions = db.relationship("Question", cascade = "all, delete-orpahn", backref="quiz")
+    attempt = db.relationship("Attempt", cascade = "all, delete-orpahn", backref="quiz")
     
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'))
-    statement = db.Column(db.Text, nullable=False)
+    question_statement = db.Column(db.Text, nullable=False)
+    ans_type = db.Column(db.String, nullable=False)
     options = db.Column(JSON)
-    range = db.Column(JSON)
-    correct_answer = db.Column(JSON)
+    correct_range = db.Column(JSON)    
+    correct_options = db.Column(JSON)
     marks = db.Column(db.Integer, nullable=False)
-    responses = db.Column(db.Integer, cascade = "all,delete", backref = "question")
+    responses = db.relationship("Response", cascade = "all,delete-orpahn", backref = "question")
     
 class Attempt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -72,7 +71,7 @@ class Attempt(db.Model):
     attempt_number = db.Column(db.Integer, nullable=False)
     attempt_date = db.Column(db.DateTime, default=datetime.now())
     score = db.Column(db.Integer, nullable=False)
-    responses = db.relationship("Response", cascade="all,delete", backref="attempt")
+    responses = db.relationship("Response", cascade="all,delete-orpahn", backref="attempt")
 
 class Response(db.Model):
     id = db.Column(db.Integer, primary_key=True)

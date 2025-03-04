@@ -54,7 +54,7 @@ name = "click"
 version = "8.1.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/b9/2e/0090cbf739cee7d23781ad4b89a9894a41538e4fcf4c31dcdd705b78eb8b/click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a", size = 226593 }
 wheels = [
@@ -148,7 +148,7 @@ wheels = [
 
 [[package]]
 name = "flask-security-too"
-version = "5.5.2"
+version = "5.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "email-validator" },
@@ -161,9 +161,9 @@ dependencies = [
     { name = "passlib" },
     { name = "wtforms" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/75/38/9ad98a921d4655d0860d8d6dc4e00910b8043b8967586ad89f0b024782d1/flask_security_too-5.5.2.tar.gz", hash = "sha256:c697289fee71efb16223ee4d2632e113c311840fe32fe51e38f7a02ddc8637c3", size = 668460 }
+sdist = { url = "https://files.pythonhosted.org/packages/35/77/0eb381f7cb9cc36a96bb0468354a9092377b33f7440c68c909656516f06b/flask_security_too-5.6.0.tar.gz", hash = "sha256:8da51fcb7393e3fe6f931af84ed4c90c7c08bbfe99a19080cb4b7343e76d80b2", size = 693814 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3e/2e/dad90f29b168602dd610c1b8568a1059ede59b4468aa8baf92fff0151e74/flask_security_too-5.5.2-py3-none-any.whl", hash = "sha256:393fb9b5c03ebc14f8c3500af4691c881ba34599a74ccbc8a2b2dc4f51071585", size = 418947 },
+    { url = "https://files.pythonhosted.org/packages/12/ec/e6008804fa911bb573d4ebe44a4833dbf958d81147018eb300ce2c40bc76/flask_security_too-5.6.0-py3-none-any.whl", hash = "sha256:dc70147bc34964f0c965b03c2762feef7bf57375d1584a0d3b9ada7c98366d22", size = 436071 },
 ]
 
 [[package]]
@@ -339,7 +339,7 @@ requires-dist = [
     { name = "bcrypt", specifier = ">=4.2.1" },
     { name = "flask", specifier = ">=3.1.0" },
     { name = "flask-restful", specifier = ">=0.3.10" },
-    { name = "flask-security-too", specifier = ">=5.5.2" },
+    { name = "flask-security-too", specifier = ">=5.6.0" },
     { name = "flask-sqlalchemy", specifier = ">=3.1.1" },
     { name = "setuptools", specifier = ">=75.6.0" },
 ]
