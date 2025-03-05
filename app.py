@@ -5,11 +5,13 @@ from backend.resources import api
 from flask_security.core import Security
 from flask_security.datastore import SQLAlchemyUserDatastore
 from flask_security.utils import hash_password
+from flask_cors import CORS
 
 
 def createApp():
     app = Flask(__name__, template_folder="frontend", static_folder="frontend")
     app.config.from_object(Config)
+    CORS(app)
     db.init_app(app)
     api.init_app(app)
     datastore = SQLAlchemyUserDatastore(db, User, Role)
