@@ -13,7 +13,7 @@ def home():
     return render_template("index.html")
 
 @app.route("/protected")
-@auth_required('token')
+@auth_required("token")
 def protected():
     return "<h1>only accessible by user</h1>"
 
@@ -61,8 +61,8 @@ def register():
 @app.route("/api/delete_account", methods=["POST"])# type: ignore
 def delete_acc():
     data = request.get_json()
-    email = data.get('email')
-    password = data.get('password')
+    email = data.get("email")
+    password = data.get("password")
     if not email or not password:
         return jsonify({"message": "Invalid inputs"}), 400
     if email:
@@ -75,29 +75,29 @@ def delete_acc():
                     user = datastore.find_user(email=email)
                     datastore.delete_user(user=user) # type: ignore
                     db.session.commit()
-                    return jsonify({'message':'User Deleted Successfully.'}), 200
+                    return jsonify({"message":"User Deleted Successfully."}), 200
                 except Exception as e:
                     db.session.rollback()
-                    return jsonify({'message':f'Error deleting user{e}'}), 404
+                    return jsonify({"message":f"Error deleting user{e}"}), 404
             else:
                 return jsonify({"message": "Invalid Password"}), 400
         
-@app.route('/api/user_activation', methods=["POST"]) # type: ignore
-@auth_required('token')
-@roles_required('admin')
+@app.route("/api/user_activation", methods=["POST"]) # type: ignore
+@auth_required("token")
+@roles_required("admin")
 def update_user_status():
     data = request.get_json()
-    id = data.get('id')
+    id = data.get("id")
     user = datastore.find_user(id=id)
     if not user:
-        return jsonify({'message':'User does not exist'}), 400
+        return jsonify({"message":"User does not exist"}), 400
     else:
         try:
             datastore.toggle_active(user)
             db.session.commit()
-            return jsonify({'message':f'User ({user.id}) status set to {user.active}'})
+            return jsonify({"message":f"User ({user.id}) status set to {user.active}"})
         except Exception as e:
             db.session.rollback()
-            return jsonify({'message':'Unable to change user status.'}), 400
+            return jsonify({"message":f"Unable to change user status: {str(e)}"}), 400
 
 

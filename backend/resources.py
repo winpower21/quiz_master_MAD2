@@ -326,8 +326,8 @@ class QuizAPI(Resource):
 
 class QuizChapterAPI(Resource):
     @marshal_with(quiz_fields)
-    @auth_required('token')
-    @roles_accepted('user', 'admin')
+    @auth_required("token")
+    @roles_accepted("user", "admin")
     def get(self, chapter_id):
         chapter = Chapter.query.get(chapter_id)
         if not chapter:
